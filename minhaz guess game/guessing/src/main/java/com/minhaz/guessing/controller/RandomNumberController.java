@@ -1,6 +1,6 @@
 package com.minhaz.guessing.controller;
 
-import com.minhaz.guessing.model.User;
+import com.minhaz.guessing.model.UserInfo;
 import com.minhaz.guessing.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -33,7 +33,7 @@ public class RandomNumberController {
             return ResponseEntity.badRequest().body(responseMap);
         }
 
-        List<User> usersWithUsername = userRepository.findByUsername(userName);
+        List<UserInfo> usersWithUsername = userRepository.findByUsername(userName);
 
         // Create an instance of the Random class
         Random random = new Random();
@@ -41,7 +41,7 @@ public class RandomNumberController {
         int randomNumber = random.nextInt(10) + 1;
 
         if (usersWithUsername.isEmpty()) {
-            User user = new User();
+            UserInfo user = new UserInfo();
             user.setUserName(userName);
             user.setAttempts(0);
             user.setNumber(randomNumber);
@@ -50,7 +50,7 @@ public class RandomNumberController {
             user.setAttempts(0);
             userRepository.save(user);
         } else {
-            User user = usersWithUsername.get(0);
+            UserInfo user = usersWithUsername.get(0);
             user.setAttempts(0);
             user.setNumber(randomNumber);
             userRepository.save(user);

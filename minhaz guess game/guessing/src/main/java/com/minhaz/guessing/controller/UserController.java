@@ -1,6 +1,6 @@
 package com.minhaz.guessing.controller;
 
-import com.minhaz.guessing.model.User;
+import com.minhaz.guessing.model.UserInfo;
 import com.minhaz.guessing.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,13 +24,13 @@ public class UserController {
     @GetMapping("/profile")
     public ResponseEntity<?> getProfile(
             @RequestParam("userName") String userName) {
-        List<User> usersWithUsername = userRepository.findByUsername(userName);
+        List<UserInfo> usersWithUsername = userRepository.findByUsername(userName);
         Map<String, Object> responseMap = new LinkedHashMap<>();
         if (usersWithUsername.isEmpty()) {
             responseMap.put("message", "No user with the given username found.");
             return ResponseEntity.badRequest().body(responseMap);
         }
-        User user = usersWithUsername.get(0);
+        UserInfo user = usersWithUsername.get(0);
         responseMap.put("userName", user.getUserName());
         responseMap.put("Total Wins", user.getWins());
         responseMap.put("Total Losses", user.getLosses());

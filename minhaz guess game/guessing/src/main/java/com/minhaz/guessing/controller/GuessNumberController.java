@@ -1,6 +1,6 @@
 package com.minhaz.guessing.controller;
 
-import com.minhaz.guessing.model.User;
+import com.minhaz.guessing.model.UserInfo;
 import com.minhaz.guessing.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -36,12 +36,12 @@ public class GuessNumberController {
         }
 
 
-        List<User> usersWithUsername = userRepository.findByUsername(userName);
+        List<UserInfo> usersWithUsername = userRepository.findByUsername(userName);
         if (usersWithUsername.isEmpty()) {
             responseMap.put("message", "No user with the given username found.");
             return ResponseEntity.badRequest().body(responseMap);
         }
-        User user = usersWithUsername.get(0);
+        UserInfo user = usersWithUsername.get(0);
         int attempts = user.getAttempts();
         // Increment the attempts count
         user.setAttempts(attempts + 1);
