@@ -1,18 +1,20 @@
 package com.minhaz.guessing.controller;
 
+import com.minhaz.guessing.dto.UserInfoDTO;
 import com.minhaz.guessing.model.UserInfo;
 import com.minhaz.guessing.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-@Controller
+@RestController
 @RequestMapping("/api")
 public class UserController {
     private final UserRepository userRepository;
@@ -36,5 +38,17 @@ public class UserController {
         responseMap.put("Total Losses", user.getLosses());
 
         return ResponseEntity.ok(responseMap);
+    }
+
+    @GetMapping("/profiles")
+    public List<UserInfoDTO> getUserInfoNameWinLost() {
+        // Retrieve the user info data from your service or repository
+        // Convert the UserInfo to UserInfoDTO
+        List<UserInfoDTO> userInfoDTOList = userRepository.findAll()
+                .stream()
+                .map(userInfo -> new UserInfoDTO(userInfo.getUserName(), userInfo.getWins(), userInfo.getLosses()))
+                .collect(Collectors.toList());
+
+        return userInfoDTOList;
     }
 }
