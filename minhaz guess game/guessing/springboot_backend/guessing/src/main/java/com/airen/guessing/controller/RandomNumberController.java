@@ -1,12 +1,15 @@
-package com.minhaz.guessing.controller;
+package com.airen.guessing.controller;
 
-import com.minhaz.guessing.model.UserInfo;
-import com.minhaz.guessing.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.airen.guessing.model.UserInfo;
+import com.airen.guessing.repository.UserRepository;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +17,7 @@ import java.util.Random;
 
 @Controller
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
 public class RandomNumberController {
     private final UserRepository userRepository;
 
@@ -21,7 +25,7 @@ public class RandomNumberController {
         this.userRepository = userRepository;
     }
 
-    @PostMapping("/random")
+    @PostMapping("/generate")
     public ResponseEntity<?> generateAndSaveRandomNumber(
             @RequestParam(name = "userName") String userName) {
 

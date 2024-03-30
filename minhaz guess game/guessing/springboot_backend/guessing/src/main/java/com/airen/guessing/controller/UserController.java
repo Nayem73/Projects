@@ -1,29 +1,33 @@
-package com.minhaz.guessing.controller;
+package com.airen.guessing.controller;
 
-import com.minhaz.guessing.dto.UserInfoDTO;
-import com.minhaz.guessing.model.UserInfo;
-import com.minhaz.guessing.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.airen.guessing.dto.UserInfoDTO;
+import com.airen.guessing.model.UserInfo;
+import com.airen.guessing.repository.UserRepository;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
     private final UserRepository userRepository;
 
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
-    @GetMapping("/profile")
+    
+        @GetMapping("/profile")
     public ResponseEntity<?> getProfile(
             @RequestParam("userName") String userName) {
         List<UserInfo> usersWithUsername = userRepository.findByUsername(userName);
@@ -39,7 +43,7 @@ public class UserController {
 
         return ResponseEntity.ok(responseMap);
     }
-
+    
     @GetMapping("/profiles")
     public List<UserInfoDTO> getUserInfoNameWinLost() {
         // Retrieve the user info data from your service or repository
