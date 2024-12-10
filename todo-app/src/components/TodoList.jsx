@@ -5,7 +5,7 @@ export default function TodoList({ todos, setTodos }) {
   return (
     <div className="modern-list">
       {todos.map((todo) => (
-        <TodoElement todo={todo} todos={todos} setTodos={setTodos} />
+        <TodoElement key={todo} todo={todo} todos={todos} setTodos={setTodos} />
       ))}
     </div>
   );
