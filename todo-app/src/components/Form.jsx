@@ -7,6 +7,7 @@ export default function Form() {
   function buttonClickEvent(event) {
     event.preventDefault();
     setTodos([...todos, todo]);
+    setTodo("");
   }
 
   return (
