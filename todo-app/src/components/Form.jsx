@@ -1,30 +1,18 @@
 import { useState } from "react";
+import TodoForm from "./TodoForm";
 
 export default function Form() {
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
 
-  function buttonClickEvent(event) {
-    event.preventDefault();
-    setTodos([...todos, todo]);
-    setTodo("");
-  }
-
   return (
-    <form>
-      <input
-        onChange={(event) => setTodo(event.target.value)}
-        type="text"
-        value={todo}
+    <div>
+      <TodoForm
+        todo={todo}
+        setTodo={setTodo}
+        todos={todos}
+        setTodos={setTodos}
       />
-      <button onClick={(event) => buttonClickEvent(event)} type="submit">
-        Add
-      </button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo}>{todo}</li>
-        ))}
-      </ul>
-    </form>
+    </div>
   );
 }
