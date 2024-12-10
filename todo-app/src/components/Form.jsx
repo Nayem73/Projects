@@ -1,5 +1,6 @@
 import { useState } from "react";
 import TodoForm from "./TodoForm";
+import TodoList from "./TodoList";
 
 export default function Form() {
   const [todo, setTodo] = useState("");
@@ -13,6 +14,7 @@ export default function Form() {
         todos={todos}
         setTodos={setTodos}
       />
+      <TodoList todos={todos} />
     </div>
   );
 }

@@ -22,11 +22,6 @@ export default function TodoForm({ todo, todos, setTodo, setTodos }) {
       >
         Add
       </button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo}>{todo}</li>
-        ))}
-      </ul>
     </form>
   );
 }
