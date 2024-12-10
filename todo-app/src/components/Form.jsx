@@ -2,10 +2,11 @@ import { useState } from "react";
 
 export default function Form() {
   const [todo, setTodo] = useState("");
+  const [todos, setTodos] = useState([]);
 
   function buttonClickEvent(event) {
     event.preventDefault();
-    console.log("button clicked");
+    setTodos([...todos, todo]);
   }
 
   return (
@@ -18,6 +19,11 @@ export default function Form() {
       <button onClick={(event) => buttonClickEvent(event)} type="submit">
         Add
       </button>
+      <ul>
+        {todos.map((todo) => (
+          <li key={todo}>{todo}</li>
+        ))}
+      </ul>
     </form>
   );
 }
