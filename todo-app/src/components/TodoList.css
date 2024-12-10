@@ -1,0 +1,10 @@
+.modern-list {
+  display: flex;
+  flex-direction: column;
+  /* To stack list items vertically */
+  align-items: center;
+  /* Center items horizontally */
+  justify-content: center;
+  /* Center items vertically */
+  margin-top: 20px;
+}
