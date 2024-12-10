@@ -1,9 +1,12 @@
+import TodoElement from "./TodoElement";
+import "./TodoList.css";
+
 export default function TodoList({ todos }) {
   return (
-    <>
+    <div className="modern-list">
       {todos.map((todo) => (
-        <h3 key={todo}>{todo}</h3>
+        <TodoElement todo={todo} />
       ))}
-    </>
+    </div>
   );
 }

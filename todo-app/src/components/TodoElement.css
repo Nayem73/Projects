@@ -1,0 +1,14 @@
+.modern-list-elements {
+  list-style-type: none;
+  padding: 20px;
+  margin: 10px;
+  font-size: larger;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: #f9f9f9;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+}
