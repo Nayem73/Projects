@@ -8,7 +8,7 @@ export default function TodoForm({ todo, todos, setTodo, setTodos }) {
   }
 
   return (
-    <form className="modern-form">
+    <form onSubmit={buttonClickEvent} className="modern-form">
       <input
         className="modern-input"
         onChange={(event) => setTodo(event.target.value)}
@@ -17,7 +17,7 @@ export default function TodoForm({ todo, todos, setTodo, setTodos }) {
       />
       <button
         className="modern-button"
-        onClick={(event) => buttonClickEvent(event)}
+        // onClick={(event) => buttonClickEvent(event)}
         type="submit"
       >
         Add
