@@ -1,5 +1,6 @@
 import { useState } from "react";
 import data from "./data";
+import "./styles.css";
 
 const Accordion = () => {
   const [selected, setSelected] = useState(null);
@@ -8,7 +9,7 @@ const Accordion = () => {
     console.log(dataItemId);
   };
   return (
-    <div>
+    <div className="wrapper">
       {data && data.length > 0 ? (
         data.map((dataItem) => (
           <div key={dataItem.id}>
