@@ -14,7 +14,7 @@ const LoadMoreData = () => {
           `https://dummyjson.com/products?limit=20&skip=${count * 20}`
         );
         const data = await response.json();
-        setProducts(data.products);
+        setProducts([...products, ...data.products]);
         setLoading(false);
       } catch {
         setErrorMessage("Failed to fetch");
@@ -23,7 +23,7 @@ const LoadMoreData = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [count]);
 
   console.log(products);
 
@@ -41,6 +41,8 @@ const LoadMoreData = () => {
             />
           </div>
         ))}
+
+      <button onClick={() => setCount(count + 1)}>Load More</button>
     </div>
   );
 };
