@@ -62,11 +62,11 @@ const ImageSlider = ({ url, limit = 5, page = 1 }) => {
               key={image.id}
               src={image.download_url}
               alt={image.author}
-              // style={{
-              //   display: currentSlide === image.id ? "block" : "none",
-              //   width: "100%",
-              //   height: "auto",
-              // }}
+              style={{
+                width: "100%",
+                height: "auto",
+                marginBottom: "10px", // Add some spacing between images
+              }}
             />
           );
         })}
