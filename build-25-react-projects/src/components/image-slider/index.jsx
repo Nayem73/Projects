@@ -70,7 +70,7 @@ const ImageSlider = ({ url, limit = 5, page = 1 }) => {
         {images &&
           images.length > 0 &&
           images.map((_, index) => (
-            <button key={index} className="current-indicator" />
+            <button key={index} onClick={() => setCurrentSlide(index)} />
           ))}
       </span>
     </div>
