@@ -14,7 +14,9 @@ const LoadMoreData = () => {
           `https://dummyjson.com/products?limit=20&skip=${count * 20}`
         );
         const data = await response.json();
-        setProducts([...products, ...data.products]);
+        // setProducts([...products, ...data.products]);
+        // setProducts should be set like below. To make sure, I get the most recent state update
+        setProducts((prevProducts) => [...prevProducts, ...data.products]);
         setLoading(false);
       } catch {
         setErrorMessage("Failed to fetch");
