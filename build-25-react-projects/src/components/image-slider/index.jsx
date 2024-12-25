@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 
 const ImageSlider = ({ url, limit = 5, page = 1 }) => {
   const [images, setImages] = useState([]);
@@ -36,40 +37,42 @@ const ImageSlider = ({ url, limit = 5, page = 1 }) => {
     return <div>Error occured: {errorMessage}</div>;
   }
 
+  const handlePrevious = () => {
+    setCurrentSlide(currentSlide === 0 ? images.length - 1 : currentSlide - 1);
+  };
+
+  const handleNext = () => {
+    setCurrentSlide(currentSlide === images.length - 1 ? 0 : currentSlide + 1);
+  };
+
   console.log(images);
 
   return (
     <div>
-      {/* {images.length > 0 &&
-        images.map((image) => (
+      <BsArrowLeftCircleFill onClick={handlePrevious} />
+      {images &&
+        images.length > 0 &&
+        images.map((image, index) => (
           <img
             key={image.id}
             src={image.download_url}
             alt={image.author}
             style={{
-              display: currentSlide === image.id ? "block" : "none",
+              display: currentSlide === index ? "block" : "none",
               width: "100%",
               height: "auto",
+              marginBottom: "10px",
             }}
           />
-        ))} */}
-
-      {images.length > 0 &&
-        images.map((image) => {
-          console.log(`Image ID: ${image.id}, Current Slide: ${currentSlide}`);
-          return (
-            <img
-              key={image.id}
-              src={image.download_url}
-              alt={image.author}
-              style={{
-                width: "100%",
-                height: "auto",
-                marginBottom: "10px", // Add some spacing between images
-              }}
-            />
-          );
-        })}
+        ))}
+      <BsArrowRightCircleFill onClick={handleNext} />
+      <span className="circle-indicators">
+        {images &&
+          images.length > 0 &&
+          images.map((_, index) => (
+            <button key={index} className="current-indicator" />
+          ))}
+      </span>
     </div>
   );
 };
