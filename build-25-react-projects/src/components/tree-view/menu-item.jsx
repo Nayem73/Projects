@@ -17,7 +17,11 @@ const MenuItem = ({ data }) => {
           <div key={index}>
             <div>{item.label}</div>
             <span onClick={() => handleToggleChildren(item.label)}>
-              {displayCurrentChildren[item.label] ? "-" : "+"}
+              {item.children
+                ? displayCurrentChildren[item.label]
+                  ? "-"
+                  : "+"
+                : ""}
             </span>
             <ul>
               {item && item.children && displayCurrentChildren[item.label] && (
