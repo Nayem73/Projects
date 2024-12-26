@@ -1,5 +1,4 @@
 import React from "react";
-import MenuList from "./menu-list";
 
 const MenuItem = ({ data }) => {
   return (
@@ -9,7 +8,7 @@ const MenuItem = ({ data }) => {
           <div key={index}>
             <div>label: {item.label}</div>
             <div>to: {item.to}</div>
-            <div>{item.children && <MenuList data={item.children} />}</div>
+            <ul>{item.children && <MenuItem data={item.children} />}</ul>
           </div>
         ))}
       </li>
