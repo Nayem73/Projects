@@ -16,7 +16,9 @@ const MenuItem = ({ data }) => {
         {data.map((item, index) => (
           <div key={index}>
             <div>{item.label}</div>
-            <span onClick={() => handleToggleChildren(item.label)}>+</span>
+            <span onClick={() => handleToggleChildren(item.label)}>
+              {displayCurrentChildren[item.label] ? "-" : "+"}
+            </span>
             <ul>
               {item && item.children && displayCurrentChildren[item.label] && (
                 <MenuItem data={item.children} />
